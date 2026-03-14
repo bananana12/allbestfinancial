@@ -323,9 +323,9 @@
   </div>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('zh',this)">中文</button>
-      <button class="lang-btn" onclick="setLang('ms',this)">BM</button>
-      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+      <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" id="btn-ms" onclick="setLang('ms')">BM</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
     <button class="btn-apply" id="nav-cta">立即申请</button>
   </div>
@@ -796,10 +796,11 @@ var T = {
 
 var lang = 'zh';
 
-function setLang(l, btn) {
+function setLang(l) {
   lang = l;
   document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
+  var activeBtn = document.getElementById('btn-' + l);
+  if (activeBtn) activeBtn.classList.add('active');
   var c = T[l];
   var ids = [
     ['nav-cta','cta'],['badge-txt','badge'],['hero-h1','h1'],['hero-sub','sub'],
