@@ -854,4 +854,11 @@ function calc(){
   var m = r === 0 ? P/n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
   var tot = m * n;
   document.getElementById('monthly').textContent = fmt(m);
-  document.getElementById('total').textContent = fmt(to
+  document.getElementById('total').textContent = fmt(tot);
+  document.getElementById('interest').textContent = fmt(tot - P);
+}
+
+window.onload = function(){ setLang('zh'); };
+</script>
+</body>
+</html>
