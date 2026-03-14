@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>立即申请 – AllBest Financial</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #085041;
+    --green-mid: #0F6E56;
+    --green-main: #1D9E75;
+    --green-light: #5DCAA5;
+    --green-pale: #E1F5EE;
+    --amber: #FAC775;
+    --white: #fff;
+    --font: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    background: #f0f7f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid #ddd;
+    padding: .75rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { font-size: 18px; font-weight: 700; color: var(--green-mid); }
+  .logo span { color: var(--green-main); font-weight: 400; }
+  .back-link {
+    font-size: 13px; color: var(--green-mid); text-decoration: none;
+    display: flex; align-items: center; gap: 5px;
+    transition: color .15s;
+  }
+  .back-link:hover { color: var(--green-dark); }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 2.5rem 1rem;
+  }
+
+  .card-wrap {
+    width: 100%; max-width: 560px;
+  }
+
+  /* STEPS INDICATOR */
+  .steps-bar {
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2rem; gap: 0;
+  }
+  .step-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    background: #ddd; color: #999;
+    transition: all .3s;
+    position: relative; z-index: 1;
+    flex-shrink: 0;
+  }
+  .step-dot.active { background: var(--green-mid); color: #fff; box-shadow: 0 0 0 4px var(--green-pale); }
+  .step-dot.done { background: var(--green-main); color: #fff; }
+  .step-dot.done::after { content: '✓'; }
+  .step-dot.done span { display: none; }
+  .step-line {
+    height: 2px; flex: 1; background: #ddd; margin: 0 -1px;
+    transition: background .3s;
+  }
+  .step-line.done { background: var(--green-main); }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(8,80,65,.10);
+    overflow: hidden;
+  }
+  .card-header {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    padding: 1.8rem 2rem 1.5rem;
+    color: white;
+  }
+  .card-header .step-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: rgba(255,255,255,.65); margin-bottom: .3rem;
+  }
+  .card-header h2 { font-size: 22px; font-weight: 700; font-family: 'DM Serif Display', serif; }
+  .card-header p { font-size: 13px; color: rgba(255,255,255,.75); margin-top: .3rem; }
+
+  .card-body { padding: 2rem; }
+
+  /* AMOUNT SLIDER (Step 1) */
+  .amount-display {
+    text-align: center;
+    background: var(--green-pale);
+    border-radius: 14px;
+    padding: 1.5rem 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .amount-label { font-size: 12px; color: var(--green-mid); margin-bottom: .3rem; }
+  .amount-number {
+    font-size: 42px; font-weight: 700; color: var(--green-dark);
+    font-family: 'DM Serif Display', serif; letter-spacing: -1px;
+  }
+  .amount-number span { font-size: 22px; font-weight: 400; margin-right: 4px; }
+
+  .slider-wrap { margin-bottom: .75rem; }
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%; height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, var(--green-main) 0%, var(--green-main) 30%, #ddd 30%);
+    outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--green-main);
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    cursor: pointer;
+    transition: transform .15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider-range {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: #999; margin-top: 6px;
+  }
+
+  /* LOAN TYPE (Step 1) */
+  .type-label { font-size: 13px; font-weight: 600; color: #444; margin-bottom: .75rem; }
+  .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: 0; }
+  .type-btn {
+    padding: .75rem; border-radius: 10px;
+    border: 1.5px solid #e0e0e0;
+    background: white; cursor: pointer;
+    font-size: 13px; font-weight: 500; color: #555;
+    display: flex; align-items: center; gap: 8px;
+    transition: all .15s;
+    font-family: var(--font);
+  }
+  .type-btn:hover { border-color: var(--green-light); color: var(--green-mid); background: var(--green-pale); }
+  .type-btn.selected { border-color: var(--green-mid); color: var(--green-mid); background: var(--green-pale); font-weight: 600; }
+  .type-btn .t-icon { font-size: 18px; }
+
+  /* FORM FIELDS (Step 2) */
+  .field { margin-bottom: 1.2rem; }
+  .field label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: #555; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .4px;
+  }
+  .field input {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid #e0e0e0; border-radius: 10px;
+    font-size: 15px; font-family: var(--font); color: #222;
+    outline: none; transition: border-color .15s, box-shadow .15s;
+    background: #fafafa;
+  }
+  .field input:focus {
+    border-color: var(--green-main); background: white;
+    box-shadow: 0 0 0 3px rgba(29,158,117,.12);
+  }
+  .field input::placeholder { color: #bbb; }
+
+  .phone-wrap { position: relative; }
+  .phone-prefix {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 15px; color: #444; font-weight: 600; pointer-events: none;
+  }
+  .phone-wrap input { padding-left: 52px; }
+
+  /* SUMMARY (Step 3) */
+  .summary-box {
+    background: var(--green-pale);
+    border-radius: 14px; padding: 1.2rem 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .summary-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .5rem 0; border-bottom: 1px solid rgba(8,80,65,.1);
+    font-size: 14px;
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-key { color: #666; }
+  .summary-val { font-weight: 600; color: var(--green-dark); }
+
+  .trust-note {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 12px; color: #777; line-height: 1.6;
+    background: #f8f8f8; border-radius: 10px; padding: .9rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .trust-note .shield { font-size: 18px; flex-shrink: 0; }
+
+  /* SUCCESS */
+  .success-view {
+    text-align: center; padding: 1rem 0;
+  }
+  .success-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--green-pale); margin: 0 auto 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px;
+    animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .success-view h3 { font-size: 22px; font-weight: 700; color: var(--green-dark); margin-bottom: .5rem; font-family: 'DM Serif Display', serif; }
+  .success-view p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 1.5rem; }
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25d366; color: white;
+    padding: 13px 28px; border-radius: 10px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: background .15s; margin-bottom: .75rem;
+    font-family: var(--font);
+  }
+  .whatsapp-btn:hover { background: #20b958; }
+  .back-home {
+    display: block; font-size: 13px; color: var(--green-mid);
+    text-decoration: none; margin-top: .5rem;
+  }
+  .back-home:hover { text-decoration: underline; }
+
+  /* BUTTONS */
+  .btn-next {
+    width: 100%; background: var(--green-mid); color: white;
+    border: none; padding: 14px; border-radius: 10px;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    font-family: var(--font); transition: background .15s, transform .1s;
+    margin-top: 1.5rem;
+  }
+  .btn-next:hover { background: var(--green-dark); }
+  .btn-next:active { transform: scale(.98); }
+  .btn-next:disabled { background: #ccc; cursor: not-allowed; }
+
+  .btn-row { display: flex; gap: .75rem; margin-top: 1.5rem; }
+  .btn-back {
+    flex: 0 0 auto; background: transparent; color: var(--green-mid);
+    border: 1.5px solid var(--green-mid); padding: 14px 20px; border-radius: 10px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    font-family: var(--font); transition: all .15s;
+  }
+  .btn-back:hover { background: var(--green-pale); }
+
+  .error-msg { font-size: 12px; color: #e05050; margin-top: 4px; display: none; }
+
+  /* LANG TOGGLE */
+  .lang-row { display: flex; gap: 4px; }
+  .lang-btn {
+    font-size: 11px; padding: 4px 11px; border-radius: 20px;
+    border: 1px solid #ddd; background: transparent;
+    cursor: pointer; color: #666; transition: all .15s;
+    font-family: var(--font);
+  }
+  .lang-btn.active { background: var(--green-mid); color: #fff; border-color: var(--green-mid); }
+
+  /* FADE TRANSITION */
+  .step-panel { animation: fadeUp .25s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .card-header { padding: 1.4rem 1.4rem 1.2rem; }
+    .card-body { padding: 1.4rem; }
+    .amount-number { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AllBest<span>Financial</span></div>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <div class="lang-row">
+      <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" onclick="setLang('ms')">BM</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="index.html" class="back-link">← <span id="lbl-back">返回主页</span></a>
+  </div>
+</nav>
+
+<main>
+  <div class="card-wrap">
+
+    <!-- STEPS BAR -->
+    <div class="steps-bar" id="steps-bar">
+      <div class="step-dot active" id="sd1"><span>1</span></div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step-dot" id="sd2"><span>2</span></div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step-dot" id="sd3"><span>3</span></div>
+    </div>
+
+    <div class="card">
+
+      <!-- ── STEP 1: 金额 + 类型 ── -->
+      <div id="step1">
+        <div class="card-header">
+          <div class="step-label" id="lbl-step1-tag">第一步 · 3步完成申请</div>
+          <h2 id="lbl-step1-hd">选择贷款详情</h2>
+          <p id="lbl-step1-sub">请选择贷款金额及类型</p>
+        </div>
+        <div class="card-body step-panel">
+          <div class="amount-display">
+            <div class="amount-label" id="lbl-amount">贷款金额</div>
+            <div class="amount-number"><span>RM</span><span id="amtDisplay">50,000</span></div>
+          </div>
+          <div class="slider-wrap">
+            <input type="range" id="amountSlider" min="5000" max="500000" step="1000" value="50000" oninput="updateSlider()">
+            <div class="slider-range"><span>RM 5,000</span><span>RM 500,000</span></div>
+          </div>
+
+          <div class="type-label" id="lbl-loantype" style="margin-top:1.4rem">贷款类型</div>
+          <div class="type-grid">
+            <button class="type-btn" onclick="selectType(this,'personal')" data-val="personal">
+              <span class="t-icon">💼</span><span id="lt1">个人贷款</span>
+            </button>
+            <button class="type-btn" onclick="selectType(this,'home')" data-val="home">
+              <span class="t-icon">🏠</span><span id="lt2">房屋贷款</span>
+            </button>
+            <button class="type-btn" onclick="selectType(this,'vehicle')" data-val="vehicle">
+              <span class="t-icon">🚗</span><span id="lt3">汽车贷款</span>
+            </button>
+            <button class="type-btn" onclick="selectType(this,'business')" data-val="business">
+              <span class="t-icon">🏢</span><span id="lt4">商业贷款</span>
+            </button>
+          </div>
+          <div class="error-msg" id="err-type" id="lbl-err-type">请选择贷款类型</div>
+
+          <button class="btn-next" onclick="goStep2()" id="btn-next1">下一步 →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: 个人信息 ── -->
+      <div id="step2" style="display:none">
+        <div class="card-header">
+          <div class="step-label" id="lbl-step2-tag">第二步 · 3步完成申请</div>
+          <h2 id="lbl-step2-hd">填写联系资料</h2>
+          <p id="lbl-step2-sub">我们将在24小时内联系您</p>
+        </div>
+        <div class="card-body step-panel">
+          <div class="field">
+            <label id="lbl-name">姓名</label>
+            <input type="text" id="inp-name" placeholder="例：陈大明 / Ahmad bin Ali" autocomplete="name">
+            <div class="error-msg" id="err-name">请填写姓名</div>
+          </div>
+          <div class="field">
+            <label id="lbl-phone">手机号码</label>
+            <div class="phone-wrap">
+              <span class="phone-prefix">+60</span>
+              <input type="tel" id="inp-phone" placeholder="11-1234 5678" autocomplete="tel">
+            </div>
+            <div class="error-msg" id="err-phone">请填写有效的手机号码</div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-back" onclick="goStep(1)">←</button>
+            <button class="btn-next" style="margin-top:0;flex:1" onclick="goStep3()" id="btn-next2">下一步 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: 确认 ── -->
+      <div id="step3" style="display:none">
+        <div class="card-header">
+          <div class="step-label" id="lbl-step3-tag">第三步 · 确认申请</div>
+          <h2 id="lbl-step3-hd">确认申请资料</h2>
+          <p id="lbl-step3-sub">请核实以下资料后提交</p>
+        </div>
+        <div class="card-body step-panel">
+          <div class="summary-box">
+            <div class="summary-row">
+              <span class="summary-key" id="sum-lbl-type">贷款类型</span>
+              <span class="summary-val" id="sum-type">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key" id="sum-lbl-amt">贷款金额</span>
+              <span class="summary-val" id="sum-amt">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key" id="sum-lbl-name">姓名</span>
+              <span class="summary-val" id="sum-name">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-key" id="sum-lbl-phone">手机号码</span>
+              <span class="summary-val" id="sum-phone">–</span>
+            </div>
+          </div>
+
+          <div class="trust-note">
+            <span class="shield">🛡️</span>
+            <span id="lbl-privacy">您的资料受PDPA保护，我们绝不会将您的个人信息透露给第三方。</span>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-back" onclick="goStep(2)">←</button>
+            <button class="btn-next" style="margin-top:0;flex:1" onclick="submitForm()" id="btn-submit">提交申请 ✓</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SUCCESS ── -->
+      <div id="step-success" style="display:none">
+        <div class="card-body step-panel" style="padding:2.5rem 2rem">
+          <div class="success-view">
+            <div class="success-icon">✅</div>
+            <h3 id="lbl-success-hd">申请已收到！</h3>
+            <p id="lbl-success-msg">感谢您的申请。我们的专员将在<strong>24小时内</strong>通过电话与您联系，请保持手机畅通。</p>
+            <a class="whatsapp-btn" href="https://wa.me/601XXXXXXXX" target="_blank">
+              💬 <span id="lbl-wa">WhatsApp 即时咨询</span>
+            </a>
+            <a class="back-home" href="index.html" id="lbl-back-home">← 返回主页</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /card -->
+  </div><!-- /card-wrap -->
+</main>
+
+<script>
+var currentStep = 1;
+var selectedType = '';
+var lang = 'zh';
+
+var T = {
+  zh: {
+    back:'返回主页',
+    step1Tag:'第一步 · 3步完成申请', step1Hd:'选择贷款详情', step1Sub:'请选择贷款金额及类型',
+    step2Tag:'第二步 · 3步完成申请', step2Hd:'填写联系资料', step2Sub:'我们将在24小时内联系您',
+    step3Tag:'第三步 · 确认申请', step3Hd:'确认申请资料', step3Sub:'请核实以下资料后提交',
+    lblAmount:'贷款金额', lblType:'贷款类型',
+    lt1:'个人贷款', lt2:'房屋贷款', lt3:'汽车贷款', lt4:'商业贷款',
+    errType:'请选择贷款类型', errName:'请填写姓名', errPhone:'请填写有效的手机号码',
+    next:'下一步 →', submit:'提交申请 ✓',
+    lblName:'姓名', lblPhone:'手机号码',
+    sumType:'贷款类型', sumAmt:'贷款金额', sumName:'姓名', sumPhone:'手机号码',
+    privacy:'您的资料受PDPA保护，我们绝不会将您的个人信息透露给第三方。',
+    successHd:'申请已收到！',
+    successMsg:'感谢您的申请。我们的专员将在<strong>24小时内</strong>通过电话与您联系，请保持手机畅通。',
+    wa:'WhatsApp 即时咨询', backHome:'← 返回主页',
+    typeNames:{'personal':'个人贷款','home':'房屋贷款','vehicle':'汽车贷款','business':'商业贷款'}
+  },
+  ms: {
+    back:'Kembali ke Laman Utama',
+    step1Tag:'Langkah 1 · 3 Langkah Mudah', step1Hd:'Pilih Butiran Pinjaman', step1Sub:'Sila pilih jumlah dan jenis pinjaman',
+    step2Tag:'Langkah 2 · 3 Langkah Mudah', step2Hd:'Maklumat Hubungan', step2Sub:'Kami akan menghubungi anda dalam 24 jam',
+    step3Tag:'Langkah 3 · Sahkan Permohonan', step3Hd:'Semak Maklumat', step3Sub:'Sila semak sebelum menghantar',
+    lblAmount:'Jumlah Pinjaman', lblType:'Jenis Pinjaman',
+    lt1:'Pinjaman Peribadi', lt2:'Pinjaman Perumahan', lt3:'Pinjaman Kenderaan', lt4:'Pinjaman Perniagaan',
+    errType:'Sila pilih jenis pinjaman', errName:'Sila masukkan nama anda', errPhone:'Sila masukkan nombor telefon yang sah',
+    next:'Seterusnya →', submit:'Hantar Permohonan ✓',
+    lblName:'Nama Penuh', lblPhone:'No. Telefon Bimbit',
+    sumType:'Jenis Pinjaman', sumAmt:'Jumlah Pinjaman', sumName:'Nama', sumPhone:'No. Telefon',
+    privacy:'Maklumat anda dilindungi di bawah PDPA. Kami tidak akan mendedahkannya kepada pihak ketiga.',
+    successHd:'Permohonan Diterima!',
+    successMsg:'Terima kasih. Pegawai kami akan menghubungi anda dalam <strong>24 jam</strong>. Sila pastikan telefon anda aktif.',
+    wa:'WhatsApp Sekarang', backHome:'← Kembali ke Laman Utama',
+    typeNames:{'personal':'Pinjaman Peribadi','home':'Pinjaman Perumahan','vehicle':'Pinjaman Kenderaan','business':'Pinjaman Perniagaan'}
+  },
+  en: {
+    back:'Back to Home',
+    step1Tag:'Step 1 · 3 Easy Steps', step1Hd:'Loan Details', step1Sub:'Select your loan amount and type',
+    step2Tag:'Step 2 · 3 Easy Steps', step2Hd:'Your Contact Info', step2Sub:'We will contact you within 24 hours',
+    step3Tag:'Step 3 · Confirm', step3Hd:'Review Your Application', step3Sub:'Please verify before submitting',
+    lblAmount:'Loan Amount', lblType:'Loan Type',
+    lt1:'Personal Loan', lt2:'Home Loan', lt3:'Vehicle Loan', lt4:'Business Loan',
+    errType:'Please select a loan type', errName:'Please enter your name', errPhone:'Please enter a valid phone number',
+    next:'Next →', submit:'Submit Application ✓',
+    lblName:'Full Name', lblPhone:'Mobile Number',
+    sumType:'Loan Type', sumAmt:'Loan Amount', sumName:'Name', sumPhone:'Phone',
+    privacy:'Your data is protected under PDPA. We will never share your information with third parties.',
+    successHd:'Application Received!',
+    successMsg:'Thank you for applying. Our advisor will contact you within <strong>24 hours</strong>. Please keep your phone reachable.',
+    wa:'WhatsApp Us Now', backHome:'← Back to Home',
+    typeNames:{'personal':'Personal Loan','home':'Home Loan','vehicle':'Vehicle Loan','business':'Business Loan'}
+  }
+};
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
+  event.target.classList.add('active');
+  var c = T[l];
+  document.getElementById('lbl-back').textContent = c.back;
+  document.getElementById('lbl-step1-tag').textContent = c.step1Tag;
+  document.getElementById('lbl-step1-hd').textContent = c.step1Hd;
+  document.getElementById('lbl-step1-sub').textContent = c.step1Sub;
+  document.getElementById('lbl-step2-tag').textContent = c.step2Tag;
+  document.getElementById('lbl-step2-hd').textContent = c.step2Hd;
+  document.getElementById('lbl-step2-sub').textContent = c.step2Sub;
+  document.getElementById('lbl-step3-tag').textContent = c.step3Tag;
+  document.getElementById('lbl-step3-hd').textContent = c.step3Hd;
+  document.getElementById('lbl-step3-sub').textContent = c.step3Sub;
+  document.getElementById('lbl-amount').textContent = c.lblAmount;
+  document.getElementById('lbl-loantype').textContent = c.lblType;
+  document.getElementById('lt1').textContent = c.lt1;
+  document.getElementById('lt2').textContent = c.lt2;
+  document.getElementById('lt3').textContent = c.lt3;
+  document.getElementById('lt4').textContent = c.lt4;
+  document.getElementById('err-type').textContent = c.errType;
+  document.getElementById('btn-next1').textContent = c.next;
+  document.getElementById('lbl-name').textContent = c.lblName;
+  document.getElementById('lbl-phone').textContent = c.lblPhone;
+  document.getElementById('err-name').textContent = c.errName;
+  document.getElementById('err-phone').textContent = c.errPhone;
+  document.getElementById('btn-next2').textContent = c.next;
+  document.getElementById('sum-lbl-type').textContent = c.sumType;
+  document.getElementById('sum-lbl-amt').textContent = c.sumAmt;
+  document.getElementById('sum-lbl-name').textContent = c.sumName;
+  document.getElementById('sum-lbl-phone').textContent = c.sumPhone;
+  document.getElementById('lbl-privacy').textContent = c.privacy;
+  document.getElementById('btn-submit').textContent = c.submit;
+  document.getElementById('lbl-success-hd').textContent = c.successHd;
+  document.getElementById('lbl-success-msg').innerHTML = c.successMsg;
+  document.getElementById('lbl-wa').textContent = c.wa;
+  document.getElementById('lbl-back-home').textContent = c.backHome;
+  // re-render type buttons selected state label
+  if(selectedType) {
+    document.getElementById('sum-type').textContent = c.typeNames[selectedType] || selectedType;
+  }
+}
+
+function updateSlider() {
+  var val = parseInt(document.getElementById('amountSlider').value);
+  document.getElementById('amtDisplay').textContent = val.toLocaleString();
+  var pct = (val - 5000) / (500000 - 5000) * 100;
+  document.getElementById('amountSlider').style.background =
+    'linear-gradient(to right, var(--green-main) 0%, var(--green-main) ' + pct + '%, #ddd ' + pct + '%)';
+}
+
+function selectType(btn, val) {
+  document.querySelectorAll('.type-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  selectedType = val;
+  document.getElementById('err-type').style.display = 'none';
+}
+
+function goStep(n) {
+  ['step1','step2','step3','step-success'].forEach(function(id){ document.getElementById(id).style.display='none'; });
+  if(n <= 3) document.getElementById('step'+n).style.display='block';
+  else document.getElementById('step-success').style.display='block';
+  currentStep = n;
+  updateStepsBar(n);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateStepsBar(n) {
+  for(var i=1;i<=3;i++){
+    var dot = document.getElementById('sd'+i);
+    dot.classList.remove('active','done');
+    if(i < n) dot.classList.add('done');
+    else if(i === n) dot.classList.add('active');
+    if(i < 3){
+      var line = document.getElementById('sl'+i);
+      line.classList.toggle('done', i < n);
+    }
+  }
+  document.getElementById('steps-bar').style.display = n > 3 ? 'none' : 'flex';
+}
+
+function goStep2() {
+  if(!selectedType){
+    document.getElementById('err-type').style.display = 'block';
+    return;
+  }
+  goStep(2);
+}
+
+function goStep3() {
+  var name = document.getElementById('inp-name').value.trim();
+  var phone = document.getElementById('inp-phone').value.trim();
+  var ok = true;
+  if(!name){ document.getElementById('err-name').style.display='block'; ok=false; } else { document.getElementById('err-name').style.display='none'; }
+  if(!phone || phone.length < 7){ document.getElementById('err-phone').style.display='block'; ok=false; } else { document.getElementById('err-phone').style.display='none'; }
+  if(!ok) return;
+  var c = T[lang];
+  document.getElementById('sum-type').textContent = c.typeNames[selectedType] || selectedType;
+  document.getElementById('sum-amt').textContent = 'RM ' + parseInt(document.getElementById('amountSlider').value).toLocaleString();
+  document.getElementById('sum-name').textContent = name;
+  document.getElementById('sum-phone').textContent = '+60 ' + phone;
+  goStep(3);
+}
+
+function submitForm() {
+  goStep(4);
+}
+
+// init
+updateSlider();
+</script>
+</body>
+</html>
