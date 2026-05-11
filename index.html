@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AllBest Financial – Pinjaman Berlesen | Licensed Loans Malaysia</title>
-<meta name="description" content="AllBestFinancial – Pinjaman peribadi, perumahan, kenderaan dan perniagaan berlesen di Malaysia. 个人贷款、房屋贷款、汽车贷款、商业贷款。">
+<title>ALL BEST HOWLY ENTERPRISE – Pinjaman Berlesen Muar Johor | 持牌贷款</title>
+<meta name="description" content="ALL BEST HOWLY ENTERPRISE – Syarikat pinjaman berlesen di Muar Johor. No. Lesen: WL5323/01/01-11/050927. 1% sebulan (bercagar), 1.5% sebulan (tanpa bercagar). 柔佛麻坡持牌放贷机构。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-dark: #085041;
@@ -15,6 +18,7 @@
     --amber: #FAC775;
     --amber-dark: #633806;
     --amber-pale: #FAEEDA;
+    --ink: #17233C;
     --gray-text: #444;
     --gray-soft: #f5f5f3;
     --gray-border: #ddd;
@@ -22,11 +26,11 @@
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 14px;
-    --font: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    --font: 'Nunito', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font); color: #222; background: #fff; font-size: 15px; line-height: 1.6; }
+  body { font-family: var(--font); color: #222; background: #fff; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
   a { text-decoration: none; color: inherit; }
   img { max-width: 100%; }
 
@@ -61,27 +65,90 @@
 
   /* ── HERO ── */
   .hero {
-    background: linear-gradient(135deg, var(--green-pale) 0%, #c8f0e0 100%);
-    padding: 3.5rem 2rem 0;
+    position: relative;
+    isolation: isolate;
+    min-height: calc(100svh - 112px);
+    display: flex;
+    align-items: stretch;
+    background:
+      linear-gradient(110deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 48%, rgba(225,245,238,.96) 100%),
+      repeating-linear-gradient(135deg, rgba(29,158,117,.14) 0 1px, transparent 1px 30px);
+    padding: clamp(3.2rem, 7vw, 5.7rem) 2rem 0;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 42%;
+    background: linear-gradient(180deg, rgba(15,110,86,.14), rgba(250,199,117,.2));
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+    z-index: -1;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: -8%;
+    bottom: 0;
+    width: 62%;
+    height: 14px;
+    background: var(--amber);
+    transform: skewX(-18deg);
+    z-index: -1;
   }
   .hero-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 420px; gap: 3rem; align-items: start;
+    width: 100%;
+    max-width: 1180px; margin: 0 auto;
+    display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 420px);
+    gap: clamp(2rem, 4.6vw, 4.5rem); align-items: center;
   }
+  .hero-text { padding-bottom: clamp(2.2rem, 5vw, 4rem); }
   .hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: white; color: var(--green-mid); font-size: 12px;
-    padding: 5px 14px; border-radius: 20px;
-    border: 1px solid var(--green-light); margin-bottom: 1.2rem;
-    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.9); color: var(--green-mid); font-size: 15px;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid rgba(29,158,117,.28); margin-bottom: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 12px 34px rgba(8,80,65,.08);
+    opacity: 0;
+    animation: heroRise .65s ease forwards;
   }
-  .hero h1 { font-size: 36px; font-weight: 700; color: var(--green-dark); line-height: 1.25; margin-bottom: .75rem; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 5.3vw, 4.45rem);
+    font-weight: 900; color: var(--ink); line-height: .95; margin-bottom: 1.15rem;
+    text-transform: uppercase; letter-spacing: 0;
+  }
+  .hero-title-line {
+    display: block;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(42px);
+    animation: titleReveal .85s cubic-bezier(.16, 1, .3, 1) forwards;
+  }
+  .hero-title-line:nth-child(2) { animation-delay: .12s; }
+  .hero-title-line:nth-child(3) { animation-delay: .24s; }
   .hero h1 em { font-style: normal; color: var(--green-main); }
-  .hero-sub { font-size: 15px; color: var(--green-mid); line-height: 1.7; margin-bottom: 1.5rem; }
-  .trust-row { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .trust-item { font-size: 13px; color: var(--green-dark); display: flex; align-items: center; gap: 5px; }
-  .trust-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-main); flex-shrink: 0; }
-  .hero-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .hero-sub {
+    max-width: 720px;
+    font-size: clamp(1rem, 1.4vw, 1.25rem); color: #4b5563; line-height: 1.75; margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: heroRise .7s ease .38s forwards;
+  }
+  .trust-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .trust-item {
+    font-size: 13px; color: var(--green-dark); display: flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,.74); border: 1px solid rgba(15,110,86,.13);
+    padding: 8px 11px; border-radius: 999px;
+    opacity: 0; transform: translateY(14px);
+    animation: heroRise .55s ease forwards;
+  }
+  .trust-item:nth-child(1) { animation-delay: .48s; }
+  .trust-item:nth-child(2) { animation-delay: .56s; }
+  .trust-item:nth-child(3) { animation-delay: .64s; }
+  .trust-item:nth-child(4) { animation-delay: .72s; }
+  .trust-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-main); flex-shrink: 0; box-shadow: 0 0 0 5px rgba(29,158,117,.12); }
+  .hero-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; opacity: 0; transform: translateY(16px); animation: heroRise .6s ease .82s forwards; }
   .btn-hero {
     background: var(--green-mid); color: #fff; border: none;
     padding: 13px 28px; border-radius: var(--radius-sm);
@@ -95,6 +162,30 @@
     font-size: 15px; font-weight: 600; cursor: pointer; transition: all .15s;
   }
   .btn-hero-outline:hover { background: var(--green-pale); }
+  .hero-side { align-self: center; }
+  .hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 1.15rem;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 44px;
+    border: 1.5px solid rgba(23,35,60,.38);
+    border-radius: 999px;
+    opacity: .72;
+  }
+  .hero-scroll-cue::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--green-main);
+    transform: translateX(-50%);
+    animation: scrollDot 1.5s ease-in-out infinite;
+  }
 
   /* ── CALC CARD ── */
   .calc-card {
@@ -131,10 +222,10 @@
   }
 
   /* ── PRODUCTS ── */
-  .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
   .prod-card {
     background: var(--white); border: 1px solid var(--gray-border);
-    border-radius: var(--radius-lg); padding: 1.5rem;
+    border-radius: var(--radius-lg); padding: 1.7rem;
     transition: box-shadow .2s, border-color .2s; cursor: pointer;
   }
   .prod-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); border-color: var(--green-light); }
@@ -143,11 +234,15 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 22px; margin-bottom: 1rem;
   }
-  .prod-name { font-size: 15px; font-weight: 700; margin-bottom: .3rem; color: var(--green-dark); }
-  .prod-desc { font-size: 12px; color: #666; margin-bottom: .8rem; line-height: 1.6; }
-  .prod-rate { font-size: 13px; color: var(--green-mid); font-weight: 600; }
-  .prod-limit { font-size: 12px; color: #888; margin-top: 2px; }
-  .prod-link { font-size: 12px; color: var(--green-main); margin-top: .8rem; display: inline-block; font-weight: 500; }
+  .prod-name { font-size: 20px; font-weight: 800; margin-bottom: .35rem; color: var(--green-dark); }
+  .prod-desc { font-size: 14px; color: var(--green-mid); margin-bottom: .9rem; line-height: 1.6; font-weight: 700; }
+  .prod-rate { font-size: 13px; color: #555; font-weight: 400; line-height: 1.75; }
+  .prod-limit { font-size: 13px; color: var(--green-dark); margin-top: .85rem; line-height: 1.65; font-weight: 700; }
+  .prod-link {
+    font-size: 13px; color: #fff; margin-top: 1.1rem; display: inline-flex; align-items: center;
+    background: var(--green-mid); border-radius: var(--radius-sm); padding: 9px 14px; font-weight: 700;
+  }
+  .prod-link:hover { background: var(--green-dark); }
 
   /* ── ELIGIBILITY ── */
   .elig-section { background: var(--gray-soft); }
@@ -250,6 +345,10 @@
     font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s;
   }
   .btn-form:hover { background: var(--green-light); }
+  .btn-form:disabled {
+    cursor: not-allowed;
+    opacity: .72;
+  }
 
   /* ── LEGAL BANNER ── */
   .legal-bar {
@@ -278,16 +377,97 @@
   .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
   .wa-float {
     position: fixed; bottom: 1.5rem; right: 1.5rem;
-    background: #25d366; color: #fff; border-radius: 50%;
-    width: 54px; height: 54px; display: flex; align-items: center; justify-content: center;
-    font-size: 26px; box-shadow: 0 4px 16px rgba(0,0,0,.2); z-index: 200;
-    text-decoration: none; transition: transform .15s;
+    background: #25d366; color: #fff; border-radius: 999px;
+    min-width: 196px; min-height: 54px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 15px 8px 9px;
+    box-shadow: 0 12px 30px rgba(37,211,102,.34), 0 5px 16px rgba(0,0,0,.16);
+    z-index: 200;
+    text-decoration: none; transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
   }
-  .wa-float:hover { transform: scale(1.08); }
+  .wa-float:hover {
+    background: #1ebe5d;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(37,211,102,.42), 0 8px 20px rgba(0,0,0,.18);
+  }
+  .wa-float:focus-visible {
+    outline: 3px solid rgba(37,211,102,.32);
+    outline-offset: 4px;
+  }
+  .wa-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #fff; color: #25d366;
+    display: grid; place-items: center;
+    flex: 0 0 auto;
+  }
+  .wa-icon svg { width: 24px; height: 24px; display: block; }
+  .wa-text { display: flex; flex-direction: column; line-height: 1.18; }
+  .wa-label { font-size: 11px; font-weight: 800; text-transform: uppercase; }
+  .wa-number { font-size: 14px; font-weight: 900; letter-spacing: .2px; }
 
+/* ── LICENSE TRUST BAR ── */
+  .license-bar {
+    background: var(--green-dark); color: rgba(255,255,255,.85);
+    padding: .6rem 2rem; font-size: 12px; text-align: center; letter-spacing: .2px;
+    line-height: 1.8;
+  }
+  .license-bar .lb-main {
+    font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 2px;
+  }
+  .license-bar .lb-details {
+    font-size: 11.5px; color: rgba(255,255,255,.7);
+    display: flex; justify-content: center; align-items: center;
+    gap: 1.2rem; flex-wrap: wrap;
+  }
+  .license-bar .lb-details span {
+    display: inline-flex; align-items: center; gap: .35rem;
+  }
+  .license-bar .lb-details span::before {
+    content: ''; display: inline-block;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--green-light); flex-shrink: 0;
+  }
+  .license-bar .lb-details span:first-child::before { display: none; }
+
+  /* ── RATE HIGHLIGHT BOX ── */
+  .rate-highlight {
+    background: rgba(250,238,218,.88); border: 1.5px solid var(--amber);
+    border-radius: var(--radius-md); padding: 1rem 1.4rem;
+    margin-bottom: 1.5rem; display: flex; gap: 2rem; flex-wrap: wrap;
+    box-shadow: 0 18px 42px rgba(99,56,6,.08);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: heroRise .65s ease .46s forwards;
+  }
+  .rate-item { text-align: center; }
+  .rate-label { font-size: 11px; color: var(--amber-dark); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+  .rate-val { font-size: 22px; font-weight: 800; color: var(--amber-dark); }
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s cubic-bezier(.16, 1, .3, 1);
+  }
+  .scroll-reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @keyframes titleReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroRise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollDot {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    35% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, 18px); }
+  }
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
+    .hero { min-height: auto; padding-bottom: 2rem; }
+    .hero::before { width: 70%; opacity: .55; }
     .hero-inner { grid-template-columns: 1fr; }
+    .hero-scroll-cue { display: none; }
     .calc-card { border-radius: var(--radius-lg); border-bottom: 1px solid var(--gray-border); }
     .stats-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
 
@@ -298,24 +478,57 @@
     nav { padding: .75rem 1rem; }
     .nav-links { display: none; }
     section { padding: 2.5rem 1rem; }
-    .hero { padding: 2rem 1rem 0; }
-    .hero h1 { font-size: 26px; }
+    .hero { padding: 2.4rem 1rem 1.5rem; }
+    .hero h1 { font-size: clamp(2.4rem, 14vw, 4.1rem); }
+    .hero-title-line { white-space: normal; }
+    .hero-badge { font-size: 13px; }
+    .rate-highlight { gap: 1rem; }
+    .rate-item { flex: 1 1 150px; }
+    .wa-float {
+      right: 1rem; bottom: 1rem;
+      min-width: 188px; min-height: 52px;
+      padding: 8px 14px 8px 9px;
+      gap: 10px;
+    }
+    .wa-icon { width: 36px; height: 36px; }
+    .wa-label { font-size: 11px; }
+    .wa-number { font-size: 13px; }
     .stats-grid, .steps-grid { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: .01ms !important;
+    }
+    .scroll-reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 
 <!-- ── WHATSAPP FLOAT ── -->
-<a class="wa-float" href="https://wa.me/601XXXXXXXX" target="_blank" title="WhatsApp Us">&#128172;</a>
+<a class="wa-float" href="https://wa.me/60127518533" target="_blank" title="WhatsApp Kami / WhatsApp Us" aria-label="WhatsApp kami di +6012-751 8533">
+  <span class="wa-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 3.5A8.4 8.4 0 0 0 4.8 16.2L4 20.5l4.4-1.1A8.4 8.4 0 1 0 12 3.5Z" fill="currentColor" opacity=".18"/>
+      <path d="M7.9 8.4c.2-.5.4-.6.7-.6h.6c.2 0 .4.1.5.4l.8 1.9c.1.2.1.4-.1.6l-.4.5c-.1.1-.2.3 0 .5.4.7 1.2 1.8 2.6 2.5.2.1.4.1.5-.1l.7-.8c.2-.2.4-.2.7-.1l1.8.9c.3.1.4.4.3.6-.1.6-.6 1.5-1.6 1.7-1.1.2-3-.2-4.9-1.9-1.9-1.7-3.2-4.2-2.7-6.1Z" fill="currentColor"/>
+    </svg>
+  </span>
+  <span class="wa-text">
+    <span class="wa-label">WhatsApp us</span>
+    <span class="wa-number">+6012-751 8533</span>
+  </span>
+</a>
 
 <!-- ── NAV ── -->
 <nav>
-  <div class="logo">AllBest<span>Financial</span></div>
+  <div class="logo">AllBest<span>Howly</span></div>
   <div class="nav-links">
-    <a href="#products" id="nav-products">贷款产品</a>
+    <a href="#products" id="nav-products">贷款服务</a>
     <a href="#eligibility" id="nav-elig">申请资格</a>
     <a href="#steps" id="nav-steps">申请流程</a>
     <a href="#faq" id="nav-faq">常见问题</a>
@@ -327,17 +540,38 @@
       <button class="lang-btn" id="btn-ms" onclick="setLang('ms')">BM</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
-    <button class="btn-apply" id="nav-cta" onclick="window.location.href='apply.html'">立即申请</button>
+    <button class="btn-apply" id="nav-cta">立即申请</button>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ── LICENSE TRUST BAR ── -->
+<div class="license-bar">
+  <div class="lb-main">✅ 持牌放贷机构 · Institusi Pinjaman Berlesen · Licensed Moneylender</div>
+  <div class="lb-details">
+    <span>No. Lesen: <strong style="color:#fff">WL5323/01/01-11/050927</strong></span>
+    <span>No. Pendaftaran: <strong style="color:#fff">201703230674 (JM0814210-K)</strong></span>
+    <span>Akta Pemberi Pinjam Wang 1951</span>
+  </div>
+</div>
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">✓ <span id="badge-txt">持牌金融机构 · No. Lesen: [填写]</span></div>
-      <h1 id="hero-h1">快速贷款<br><em>无忧还款</em></h1>
-      <p class="hero-sub" id="hero-sub">专为马来西亚华人与马来人设计的全方位贷款方案。利率透明，流程简单，24小时审批。</p>
+      <div class="hero-badge">✓ <span id="badge-txt">1小时快速审批 · 柔佛持牌贷款</span></div>
+      <h1 id="hero-h1"><span class="hero-title-line">ALL BEST HOWLY</span><span class="hero-title-line">柔佛持牌</span><span class="hero-title-line"><em>贷款公司</em></span></h1>
+      <p class="hero-sub" id="hero-sub">100% 持牌经营。麻坡本地团队，利率透明，流程简单，适合需要快速周转的柔佛客户。</p>
+      <!-- Rate highlight -->
+      <div class="rate-highlight">
+        <div class="rate-item">
+          <div class="rate-label">有担保 · Bercagar · Secured</div>
+          <div class="rate-val">1% <span style="font-size:13px;font-weight:500">/ 月</span></div>
+          <div class="rate-sub">Sebulan · Per Month</div>
+        </div>
+        <div class="rate-item">
+          <div class="rate-label">无担保 · Tanpa Bercagar · Unsecured</div>
+          <div class="rate-val">1.5% <span style="font-size:13px;font-weight:500">/ 月</span></div>
+          <div class="rate-sub">Sebulan · Per Month</div>
+        </div>
+      </div>
       <div class="trust-row">
         <div class="trust-item"><div class="trust-dot"></div><span id="t1">利率透明</span></div>
         <div class="trust-item"><div class="trust-dot"></div><span id="t2">24小时审批</span></div>
@@ -345,11 +579,11 @@
         <div class="trust-item"><div class="trust-dot"></div><span id="t4">合法持牌</span></div>
       </div>
       <div class="hero-cta-row">
-        <button class="btn-hero" id="cta-main" onclick="window.location.href='apply.html'">立即申请</button>
+        <button class="btn-hero" id="cta-main">立即申请</button>
         <button class="btn-hero-outline" id="cta-calc" onclick="document.getElementById('calc-section').scrollIntoView({behavior:'smooth'})">试算贷款</button>
       </div>
     </div>
-    <div>
+    <div class="hero-side scroll-reveal">
       <div class="calc-card">
         <h3 id="calc-title">📊 贷款计算器</h3>
         <div class="field-lbl" id="lbl-amount">贷款金额 (RM)</div>
@@ -357,14 +591,14 @@
           <input type="range" id="amount" min="5000" max="500000" step="1000" value="50000" oninput="calc()">
           <span class="fval" id="amountVal">RM 50,000</span>
         </div>
-        <div class="field-lbl" id="lbl-tenure">还款年限</div>
+        <div class="field-lbl" id="lbl-tenure">还款期限 (月)</div>
         <div class="field-row">
-          <input type="range" id="tenure" min="1" max="30" step="1" value="5" oninput="calc()">
-          <span class="fval" id="tenureVal">5 年</span>
+          <input type="range" id="tenure" min="1" max="60" step="1" value="12" oninput="calc()">
+          <span class="fval" id="tenureVal">12 个月</span>
         </div>
-        <div class="field-lbl" id="lbl-rate">年利率 (%)</div>
+        <div class="field-lbl" id="lbl-rate">月利率 (%)</div>
         <div class="field-row">
-          <input type="range" id="rate" min="3.5" max="12" step="0.1" value="5.5" oninput="calc()">
+          <input type="range" id="rate" min="1" max="1.5" step="0.5" value="1" oninput="calc()">
           <span class="fval" id="rateVal">5.5%</span>
         </div>
         <div class="res-row">
@@ -372,10 +606,11 @@
           <div class="res-box"><div class="res-lbl" id="rl2">总还款额</div><div class="res-val" id="total">–</div></div>
           <div class="res-box"><div class="res-lbl" id="rl3">总利息</div><div class="res-val" id="interest">–</div></div>
         </div>
-        <button class="calc-btn" id="calc-apply-btn" onclick="window.location.href='apply.html'">申请这个方案 →</button>
+        <button class="calc-btn" id="calc-apply-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">申请这个方案 →</button>
       </div>
     </div>
   </div>
+  <div class="hero-scroll-cue" aria-hidden="true"></div>
 </div>
 <div id="calc-section"></div>
 
@@ -383,42 +618,26 @@
 <section id="products">
   <div class="section-inner">
     <div class="section-hd">
-      <div class="tag" id="tag-prod">贷款产品</div>
-      <h2 id="prod-hd">全方位贷款产品</h2>
-      <p id="prod-sub">无论是个人需求还是商业扩展，我们都有合适的方案</p>
+      <div class="tag" id="tag-prod">贷款服务</div>
+      <h2 id="prod-hd">简单申请，快速处理</h2>
+      <p id="prod-sub">根据您的资格提供合适贷款方案。我们提供个人贷款与商业贷款服务，协助您应付生活资金需求、紧急开销、事业周转或业务扩展。</p>
     </div>
     <div class="prod-grid">
       <div class="prod-card">
         <div class="prod-icon">💼</div>
         <div class="prod-name" id="p1n">个人贷款</div>
-        <div class="prod-desc" id="p1d">用于医疗、教育、装修、旅游等各类个人资金需求，快速审批。</div>
-        <div class="prod-rate" id="p1r">年利率从 5.5% 起</div>
-        <div class="prod-limit" id="p1l">最高 RM 150,000 · 最长 10 年</div>
-        <a class="prod-link" href="#contact" id="p1a">了解更多 →</a>
-      </div>
-      <div class="prod-card">
-        <div class="prod-icon">🏠</div>
-        <div class="prod-name" id="p2n">房屋贷款</div>
-        <div class="prod-desc" id="p2d">助您实现置业梦想，灵活还款方案，竞争力利率，一站式服务。</div>
-        <div class="prod-rate" id="p2r">年利率从 3.5% 起</div>
-        <div class="prod-limit" id="p2l">最高 RM 2,000,000 · 最长 35 年</div>
-        <a class="prod-link" href="#contact" id="p2a">了解更多 →</a>
-      </div>
-      <div class="prod-card">
-        <div class="prod-icon">🚗</div>
-        <div class="prod-name" id="p3n">汽车贷款</div>
-        <div class="prod-desc" id="p3d">新车旧车均可申请，文件简单，审批迅速，让您快速上路。</div>
-        <div class="prod-rate" id="p3r">年利率从 3.8% 起</div>
-        <div class="prod-limit" id="p3l">最高 RM 500,000 · 最长 9 年</div>
-        <a class="prod-link" href="#contact" id="p3a">了解更多 →</a>
+        <div class="prod-desc" id="p1d">灵活资金，解决您的个人需要。</div>
+        <div class="prod-rate" id="p1r">个人贷款适合用于紧急开销、医疗费用、教育开销、家居维修、日常资金周转或其他个人财务需求。我们根据申请人的资格、收入能力与文件情况，提供合适的贷款额度与还款方案。</div>
+        <div class="prod-limit" id="p1l">适合对象：马来西亚公民，年龄 18 至 60 岁。</div>
+        <a class="prod-link" href="#contact" id="p1a">了解更多 / 立即申请</a>
       </div>
       <div class="prod-card">
         <div class="prod-icon">🏭</div>
         <div class="prod-name" id="p4n">商业贷款</div>
-        <div class="prod-desc" id="p4d">支持中小企业扩充业务、购置设备、周转资金，专业方案量身定制。</div>
-        <div class="prod-rate" id="p4r">年利率从 6.0% 起</div>
-        <div class="prod-limit" id="p4l">最高 RM 5,000,000 · 灵活年限</div>
-        <a class="prod-link" href="#contact" id="p4a">了解更多 →</a>
+        <div class="prod-desc" id="p4d">为您的生意提供额外周转资金。</div>
+        <div class="prod-rate" id="p4r">商业贷款适合需要额外资金的生意业主，用于增加库存、购买设备、扩展业务、应付营运开销或管理现金流。如申请人能够提供完整文件或合适抵押品，可考虑申请更高贷款额度与更灵活的还款安排。</div>
+        <div class="prod-limit" id="p4l">适合对象：小型企业主、自雇人士、商家与需要资金周转的生意经营者。</div>
+        <a class="prod-link" href="#contact" id="p4a">了解更多 / 立即申请</a>
       </div>
     </div>
   </div>
@@ -519,24 +738,50 @@
       <p id="faq-sub">找不到答案？欢迎直接联系我们</p>
     </div>
 
-    <!-- ░░ FAQ 占位框 — 有内容后删掉这个 div，改用下方 .faq-list ░░ -->
-    <div class="faq-placeholder">
-      <div class="ph-icon">❓</div>
-      <h3 id="faq-ph-title">FAQ 内容即将更新</h3>
-      <p id="faq-ph-sub">此部分将收录客户最常提问的问题与解答，敬请期待。<br>如有疑问，欢迎通过 WhatsApp 或表格联系我们。</p>
-    </div>
-
-    <!-- ░░ FAQ 内容 — 之后填入问答，并将上面 placeholder 删除，将此 ul display 改为 block ░░ -->
-    <ul class="faq-list" id="faq-list">
-      <!-- 示例结构（复制此格式添加更多 FAQ）：
+    <!-- ░░ FAQ Content ░░ -->
+    <ul class="faq-list" id="faq-list" style="display:block">
       <li class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          <span>问题写在这里？</span>
+          <span>你们是合法持牌的放贷机构吗？/ Adakah anda berlesen?</span>
           <span class="arrow">+</span>
         </button>
-        <div class="faq-a">答案写在这里。可以是多行文字，支持 HTML 格式。</div>
+        <div class="faq-a">是的。ALL BEST HOWLY ENTERPRISE 依据马来西亚《放贷人法令 1951》持牌经营，执照号：<strong>WL5323/01/01-11/050927</strong>，注册号：<strong>201703230674 (JM0814210-K)</strong>。您可向柔佛州政府核实我们的执照。<br><br>Ya. Kami berlesen di bawah Akta Pemberi Pinjam Wang 1951, No. Lesen: WL5323/01/01-11/050927.</div>
       </li>
-      -->
+      <li class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>利率是多少？/ Berapakah kadar faedah?</span>
+          <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">我们的利率是：<br>• <strong>有担保贷款 (Bercagar / Secured)：1% 每月</strong><br>• <strong>无担保贷款 (Tanpa Bercagar / Unsecured)：1.5% 每月</strong><br><br>这是根据《放贷人法令 1951》规定的法定利率，不会有任何隐藏费用。Kadar ini adalah mengikut Akta Pemberi Pinjam Wang 1951.</div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>申请需要什么文件？/ Dokumen apa yang diperlukan?</span>
+          <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">基本文件包括：<br>• MyKad 正反面复印件<br>• 最近 3 个月薪资单或收入证明<br>• 最近 3 个月银行存折或结单<br>• 担保品文件（如有担保贷款）<br><br>如需了解更多，请直接 WhatsApp 我们：+6012-751 8533。</div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>审批需要多长时间？/ Berapa lama kelulusan?</span>
+          <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">一般情况下，资料齐全后我们会在 <strong>24 小时内</strong> 完成审批。获批后款项会尽快安排转账。<br><br>Kebiasaannya, kelulusan dalam masa 24 jam selepas dokumen lengkap diterima.</div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>你们在哪里？可以亲自来办理吗？/ Boleh datang ke pejabat?</span>
+          <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">我们的办公室位于：<br><strong>No. 37-21, Tingkat 2, Jalan Bakri, 84000 Muar, Johor</strong><br>营业时间：周一至周六，上午 9:00 – 下午 6:00<br><br>欢迎预约后亲临或先通过 WhatsApp (+6012-751 8533) 咨询。</div>
+      </li>
+      <li class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>有没有提前还款罚款？/ Ada penalti bayaran awal?</span>
+          <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">根据《放贷人法令 1951》，如提前全额还清贷款，利息将按实际使用天数计算，不收取额外惩罚费。详情请联系我们。<br><br>Mengikut Akta, faedah dikira berdasarkan hari sebenar penggunaan pinjaman.</div>
+      </li>
     </ul>
   </div>
 </section>
@@ -555,21 +800,21 @@
           <div class="contact-icon">📞</div>
           <div>
             <div class="contact-label" id="cl1">电话 / Telefon / Phone</div>
-            <div class="contact-val">+60X-XXXX XXXX</div>
+            <div class="contact-val"><a href="tel:+60127518533" style="color:#fff">+6012-751 8533</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">💬</div>
           <div>
             <div class="contact-label">WhatsApp</div>
-            <div class="contact-val">+60X-XXXX XXXX</div>
+            <div class="contact-val"><a href="https://wa.me/60127518533" target="_blank" style="color:#5DCAA5;font-weight:600">+6012-751 8533 (klik untuk chat)</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">✉️</div>
           <div>
             <div class="contact-label" id="cl3">电邮 / E-mel / Email</div>
-            <div class="contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5a33343c351a3b3636383f292e3c33343b3439333b3674393537">[email&#160;protected]</a></div>
+            <div class="contact-val"><a href="mailto:allbesthowly53@gmail.com" style="color:#fff">allbesthowly53@gmail.com</a></div>
           </div>
         </div>
         <div class="contact-item">
@@ -583,7 +828,7 @@
           <div class="contact-icon">📍</div>
           <div>
             <div class="contact-label" id="cl5">地址 / Alamat / Address</div>
-            <div class="contact-val">[No., Jalan, Taman], [Bandar], [Negeri], Malaysia</div>
+            <div class="contact-val">No. 37-21, Tingkat 2, Jalan Bakri,<br>84000 Muar, Johor</div>
           </div>
         </div>
       </div>
@@ -602,8 +847,6 @@
           <label id="fl-type">贷款类型 / Jenis Pinjaman</label>
           <select id="fi-type">
             <option id="fo1">个人贷款 / Pinjaman Peribadi</option>
-            <option id="fo2">房屋贷款 / Pinjaman Perumahan</option>
-            <option id="fo3">汽车贷款 / Pinjaman Kenderaan</option>
             <option id="fo4">商业贷款 / Pinjaman Perniagaan</option>
           </select>
         </div>
@@ -615,7 +858,7 @@
           <label id="fl-msg">留言 / Mesej</label>
           <textarea id="fi-msg" rows="3" placeholder="请简述您的需求..."></textarea>
         </div>
-        <button class="btn-form" id="form-submit">提交申请 / Hantar Permohonan</button>
+        <button type="button" class="btn-form" id="form-submit">提交申请 / Hantar Permohonan</button>
       </div>
     </div>
   </div>
@@ -624,10 +867,10 @@
 <!-- ── LEGAL ── -->
 <div class="legal-bar" id="legal-bar">
   ⚠️ <strong>重要声明 / Notis Penting / Important Notice:</strong>
-  AllBestFinancial Sdn Bhd 依据马来西亚《放贷人法令 1951》持牌经营，执照号：[填写] |
-  Berlesen di bawah Akta Pemberi Pinjam Wang 1951, No. Lesen: [ISI] |
-  Licensed under the Moneylenders Act 1951, License No.: [INSERT] |
-  利率视个人信用而定 · Kadar faedah tertakluk kepada penilaian kredit · Rates subject to credit assessment |
+  ALL BEST HOWLY ENTERPRISE 依据马来西亚《放贷人法令 1951》持牌经营 |
+  Berlesen di bawah Akta Pemberi Pinjam Wang 1951 |
+  No. Lesen: <strong>WL5323/01/01-11/050927</strong> |
+  利率：有担保 1% / 月，无担保 1.5% / 月 · Kadar: Bercagar 1% / Tanpa Bercagar 1.5% sebulan |
   借贷须量力而为 · Pinjam mengikut kemampuan · Borrow responsibly |
   Bank Negara Malaysia: <strong>1-300-88-5465</strong>
 </div>
@@ -637,14 +880,12 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-logo">AllBest<span>Financial</span></div>
-        <div class="footer-desc" id="footer-desc">AllBestFinancial Sdn Bhd — 持牌金融机构，专为马来西亚各族群提供透明、专业的贷款服务。<br>Institusi kewangan berlesen menyediakan perkhidmatan pinjaman yang telus dan profesional.</div>
+        <div class="footer-logo">AllBest<span>Howly</span></div>
+        <div class="footer-desc" id="footer-desc">ALL BEST HOWLY ENTERPRISE (JM0814210-K)<br>持牌放贷机构 · Institusi Berlesen di bawah Akta Pemberi Pinjam Wang 1951<br>No. 37-21, Tingkat 2, Jalan Bakri, 84000 Muar, Johor</div>
       </div>
       <div class="footer-col">
-        <h4 id="fc1-hd">贷款产品</h4>
+        <h4 id="fc1-hd">贷款服务</h4>
         <a href="#products" id="fc1-1">个人贷款</a>
-        <a href="#products" id="fc1-2">房屋贷款</a>
-        <a href="#products" id="fc1-3">汽车贷款</a>
         <a href="#products" id="fc1-4">商业贷款</a>
       </div>
       <div class="footer-col">
@@ -663,7 +904,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span id="footer-copy">© 2025 AllBestFinancial Sdn Bhd · SSM Reg No: [填写] · PDPA Compliant</span>
+      <span id="footer-copy">© 2025 ALL BEST HOWLY ENTERPRISE · No. Pendaftaran: 201703230674 (JM0814210-K) · No. Lesen: WL5323/01/01-11/050927</span>
       <span id="footer-rights">版权所有 · Hak Cipta Terpelihara · All Rights Reserved</span>
     </div>
   </div>
@@ -673,123 +914,123 @@
 /* ── TRANSLATIONS ── */
 var T = {
   zh: {
-    cta:'立即申请', badge:'持牌金融机构 · No. Lesen: [填写]',
-    h1:'快速贷款<br><em>无忧还款</em>',
-    sub:'专为马来西亚华人与马来人设计的全方位贷款方案。利率透明，流程简单，24小时审批。',
-    t1:'利率透明', t2:'24小时审批', t3:'零隐藏费', t4:'合法持牌',
+    cta:'立即申请', badge:'1小时快速审批 · 柔佛持牌贷款',
+    h1:'<span class="hero-title-line">ALL BEST HOWLY</span><span class="hero-title-line">柔佛持牌</span><span class="hero-title-line"><em>贷款公司</em></span>',
+    sub:'100% 持牌经营。麻坡本地团队，利率透明，流程简单，适合需要快速周转的柔佛客户。',
+    t1:'利率透明', t2:'快速审批', t3:'零隐藏费', t4:'合法持牌',
     ctaMain:'立即申请', ctaCalc:'试算贷款',
-    calcTitle:'📊 贷款计算器', lblAmt:'贷款金额 (RM)', lblTen:'还款年限', lblRate:'年利率 (%)',
-    tenUnit:'年', rl1:'每月还款', rl2:'总还款额', rl3:'总利息', calcBtn:'申请这个方案 →',
-    tagProd:'贷款产品', prodHd:'全方位贷款产品', prodSub:'无论是个人需求还是商业扩展，我们都有合适的方案',
-    p1n:'个人贷款', p1d:'用于医疗、教育、装修、旅游等各类个人资金需求，快速审批。', p1r:'年利率从 5.5% 起', p1l:'最高 RM 150,000 · 最长 10 年', p1a:'了解更多 →',
-    p2n:'房屋贷款', p2d:'助您实现置业梦想，灵活还款方案，竞争力利率，一站式服务。', p2r:'年利率从 3.5% 起', p2l:'最高 RM 2,000,000 · 最长 35 年', p2a:'了解更多 →',
-    p3n:'汽车贷款', p3d:'新车旧车均可申请，文件简单，审批迅速，让您快速上路。', p3r:'年利率从 3.8% 起', p3l:'最高 RM 500,000 · 最长 9 年', p3a:'了解更多 →',
-    p4n:'商业贷款', p4d:'支持中小企业扩充业务、购置设备、周转资金，专业方案量身定制。', p4r:'年利率从 6.0% 起', p4l:'最高 RM 5,000,000 · 灵活年限', p4a:'了解更多 →',
+    calcTitle:'📊 贷款计算器', lblAmt:'贷款金额 (RM)', lblTen:'还款月数', lblRate:'月利率 (%)',
+    tenUnit:'个月', rl1:'每月还款', rl2:'总还款额', rl3:'总利息', calcBtn:'申请这个方案 →',
+    tagProd:'贷款服务', prodHd:'简单申请，快速处理', prodSub:'根据您的资格提供合适贷款方案。我们提供个人贷款与商业贷款服务，协助您应付生活资金需求、紧急开销、事业周转或业务扩展。',
+    p1n:'个人贷款', p1d:'灵活资金，解决您的个人需要。', p1r:'个人贷款适合用于紧急开销、医疗费用、教育开销、家居维修、日常资金周转或其他个人财务需求。我们根据申请人的资格、收入能力与文件情况，提供合适的贷款额度与还款方案。', p1l:'适合对象：马来西亚公民，年龄 18 至 60 岁。', p1a:'了解更多 / 立即申请',
+    p2n:'房屋贷款', p2d:'助您实现置业梦想，灵活还款方案，有担保利率更优惠。', p2r:'有担保：1% / 月', p2l:'依个人资格而定', p2a:'立即咨询 →',
+    p3n:'汽车贷款', p3d:'新车旧车均可申请，文件简单，审批迅速，让您快速上路。', p3r:'有担保：1% / 月', p3l:'依个人资格而定', p3a:'立即咨询 →',
+    p4n:'商业贷款', p4d:'为您的生意提供额外周转资金。', p4r:'商业贷款适合需要额外资金的生意业主，用于增加库存、购买设备、扩展业务、应付营运开销或管理现金流。如申请人能够提供完整文件或合适抵押品，可考虑申请更高贷款额度与更灵活的还款安排。', p4l:'适合对象：小型企业主、自雇人士、商家与需要资金周转的生意经营者。', p4a:'了解更多 / 立即申请',
     tagElig:'申请资格', eligHd:'谁可以申请？', eligSub:'基本申请条件，简单快捷',
     eligReqHd:'📋 基本条件', eligDocHd:'📄 所需文件',
-    e1:'马来西亚公民或永久居民（持有效 MyKad）', e2:'年龄 18 至 65 岁', e3:'最低月收入 RM 1,500（个人贷款）', e4:'有稳定工作或生意收入来源', e5:'良好的信用记录（CCRIS / CTOS）',
-    d1:'MyKad 正反面复印件', d2:'最近 3 个月薪资单 / 收入证明', d3:'最近 3 个月银行存折或结单', d4:'最近一年 EA 表格或报税记录（自雇人士）', d5:'商业贷款：公司注册证书（SSM）',
-    statsHd:'值得信赖的数字', statsSub:'超过十年，我们一直是马来西亚客户的首选',
+    e1:'马来西亚公民或永久居民（持有效 MyKad）', e2:'年龄 18 至 70 岁', e3:'有稳定收入来源（受薪或自雇）', e4:'有担保贷款须提供担保品', e5:'良好的还款意愿',
+    d1:'MyKad 正反面复印件', d2:'最近 3 个月薪资单 / 收入证明', d3:'最近 3 个月银行存折或结单', d4:'担保品文件（如有担保贷款）', d5:'其他支持文件（如有需要）',
+    statsHd:'值得信赖的数字', statsSub:'麻坡本地持牌放贷，服务大众多年',
     s1:'最快24小时<br>批准放款', s2:'零隐藏费<br>完全透明', s3:'年行业经验<br>专业可信', s4:'满意客户<br>口碑保证',
     tagSteps:'申请流程', stepsHd:'简单4步，快速完成', stepsSub:'从申请到款项到账，全程清晰透明',
-    st1:'在线申请', sd1:'填写简单在线表格，上传 MyKad 及收入证明，全程线上操作。',
-    st2:'资料审核', sd2:'专业团队在24小时内完成资料审核，如需补件会主动联系。',
-    st3:'获得批准', sd3:'收到批准通知，确认贷款条款、利率及还款计划后签署协议。',
+    st1:'联系我们', sd1:'WhatsApp 或致电 +6012-751 8533，告知贷款需求，我们免费为您评估。',
+    st2:'提交文件', sd2:'准备并提交所需文件，专业团队迅速核查资料。',
+    st3:'获得批准', sd3:'收到批准通知，确认贷款条款、利率及还款计划后签署合约。',
     st4:'款项到账', sd4:'签署完成后，款项直接转入您的指定银行账户，快速到账。',
-    tagFaq:'常见问题', faqHd:'常见问题解答', faqSub:'找不到答案？欢迎直接联系我们',
-    faqPhTitle:'FAQ 内容即将更新', faqPhSub:'此部分将收录客户最常提问的问题与解答，敬请期待。<br>如有疑问，欢迎通过 WhatsApp 或表格联系我们。',
-    tagContact:'联系我们', contactHd:'立即咨询，免费评估', contactSub:'我们的专业顾问将在工作日24小时内回复您',
+    tagFaq:'常见问题', faqHd:'常见问题解答', faqSub:'找不到答案？欢迎直接 WhatsApp 我们',
+    faqPhTitle:'FAQ', faqPhSub:'请参阅下方常见问题。如有其他疑问，欢迎 WhatsApp 联系我们。',
+    tagContact:'联系我们', contactHd:'立即咨询，免费评估', contactSub:'WhatsApp 我们或填写表格，工作日内迅速回复',
     cl1:'电话 / Telefon', cl3:'电邮 / E-mel', cl4:'营业时间', cl5:'地址 / Alamat',
     bizHours:'周一至周六 · 9:00AM – 6:00PM',
     flName:'姓名', flPhone:'手机号码', flType:'贷款类型', flAmt:'申请金额', flMsg:'留言',
     fo1:'个人贷款', fo2:'房屋贷款', fo3:'汽车贷款', fo4:'商业贷款',
     formSubmit:'提交申请',
-    navProducts:'贷款产品', navElig:'申请资格', navSteps:'申请流程', navFaq:'常见问题', navContact:'联系我们',
-    fc1Hd:'贷款产品', fc1_1:'个人贷款', fc1_2:'房屋贷款', fc1_3:'汽车贷款', fc1_4:'商业贷款',
+    navProducts:'贷款服务', navElig:'申请资格', navSteps:'申请流程', navFaq:'常见问题', navContact:'联系我们',
+    fc1Hd:'贷款服务', fc1_1:'个人贷款', fc1_2:'房屋贷款', fc1_3:'汽车贷款', fc1_4:'商业贷款',
     fc2Hd:'快速链接', fc2_1:'申请资格', fc2_2:'申请流程', fc2_3:'常见问题', fc2_4:'联系我们',
     fc3Hd:'法律信息', fc3_1:'隐私政策', fc3_2:'使用条款', fc3_3:'投诉渠道', fc3_4:'关于我们',
-    footerDesc:'AllBestFinancial Sdn Bhd — 持牌金融机构，专为马来西亚各族群提供透明、专业的贷款服务。',
-    footerCopy:'© 2025 AllBestFinancial Sdn Bhd · SSM Reg No: [填写] · PDPA Compliant',
-    footerRights:'版权所有 · All Rights Reserved'
+    footerDesc:'ALL BEST HOWLY ENTERPRISE — 持牌放贷机构，No. Lesen: WL5323/01/01-11/050927，依法经营，透明收费。',
+    footerCopy:'© 2025 ALL BEST HOWLY ENTERPRISE · No. Pendaftaran: 201703230674 (JM0814210-K) · No. Lesen: WL5323/01/01-11/050927',
+    footerRights:'版权所有 · Hak Cipta Terpelihara · All Rights Reserved'
   },
   ms: {
-    cta:'Mohon Sekarang', badge:'Institusi Kewangan Berlesen · No. Lesen: [ISI]',
-    h1:'Pinjaman Pantas<br><em>Bayaran Tenang</em>',
-    sub:'Penyelesaian pinjaman lengkap direka khas untuk rakyat Malaysia. Kadar telus, proses mudah, kelulusan 24 jam.',
-    t1:'Kadar Telus', t2:'Lulus 24 Jam', t3:'Tiada Caj Tersembunyi', t4:'Berlesen Sah',
+    cta:'Mohon Sekarang', badge:'Kelulusan Cepat 1 Jam Sahaja',
+    h1:'<span class="hero-title-line">ALL BEST HOWLY</span><span class="hero-title-line">PINJAMAN</span><span class="hero-title-line"><em>BERLESEN JOHOR</em></span>',
+    sub:'100% Berlesen. Kelulusan 1 jam sahaja. Syarat mudah, kadar telus, dan khidmat mesra untuk pelanggan Johor.',
+    t1:'Kadar Telus', t2:'Lulus Cepat', t3:'Tiada Caj Tersembunyi', t4:'Berlesen Sah',
     ctaMain:'Mohon Sekarang', ctaCalc:'Kira Pinjaman',
-    calcTitle:'📊 Kalkulator Pinjaman', lblAmt:'Jumlah Pinjaman (RM)', lblTen:'Tempoh Pinjaman', lblRate:'Kadar Faedah (%)',
-    tenUnit:'Tahun', rl1:'Bayaran Bulanan', rl2:'Jumlah Bayaran', rl3:'Jumlah Faedah', calcBtn:'Mohon Pelan Ini →',
-    tagProd:'Produk Pinjaman', prodHd:'Produk Pinjaman Kami', prodSub:'Penyelesaian kewangan lengkap untuk setiap keperluan anda',
-    p1n:'Pinjaman Peribadi', p1d:'Untuk perubatan, pendidikan, pengubahsuaian, pelancongan dan keperluan peribadi lain.', p1r:'Dari 5.5% setahun', p1l:'Sehingga RM 150,000 · Sehingga 10 tahun', p1a:'Ketahui Lebih Lanjut →',
-    p2n:'Pinjaman Perumahan', p2d:'Wujudkan impian memiliki rumah dengan kadar kompetitif dan terma fleksibel.', p2r:'Dari 3.5% setahun', p2l:'Sehingga RM 2,000,000 · Sehingga 35 tahun', p2a:'Ketahui Lebih Lanjut →',
-    p3n:'Pinjaman Kenderaan', p3d:'Kereta baru atau terpakai boleh dipohon, dokumentasi mudah dan kelulusan pantas.', p3r:'Dari 3.8% setahun', p3l:'Sehingga RM 500,000 · Sehingga 9 tahun', p3a:'Ketahui Lebih Lanjut →',
-    p4n:'Pinjaman Perniagaan', p4d:'Sokong perniagaan PKS anda dengan modal pusingan, pembelian aset dan pengembangan perniagaan.', p4r:'Dari 6.0% setahun', p4l:'Sehingga RM 5,000,000 · Tempoh fleksibel', p4a:'Ketahui Lebih Lanjut →',
-    tagElig:'Kelayakan', eligHd:'Siapa Boleh Memohon?', eligSub:'Syarat asas permohonan yang mudah dan ringkas',
+    calcTitle:'📊 Kalkulator Pinjaman', lblAmt:'Jumlah Pinjaman (RM)', lblTen:'Tempoh (Bulan)', lblRate:'Kadar Faedah (% sebulan)',
+    tenUnit:'bulan', rl1:'Bayaran Bulanan', rl2:'Jumlah Bayaran', rl3:'Jumlah Faedah', calcBtn:'Mohon Pelan Ini →',
+    tagProd:'Perkhidmatan Pinjaman', prodHd:'Permohonan mudah, pemprosesan pantas', prodSub:'Pilihan pinjaman yang sesuai berdasarkan kelayakan anda. Kami menyediakan pinjaman peribadi dan pinjaman perniagaan untuk membantu keperluan kewangan harian, perbelanjaan kecemasan, modal pusingan perniagaan atau pengembangan perniagaan.',
+    p1n:'Pinjaman Peribadi', p1d:'Pembiayaan fleksibel untuk keperluan peribadi anda.', p1r:'Pinjaman peribadi sesuai untuk perbelanjaan kecemasan, kos perubatan, pendidikan, pembaikan rumah, komitmen harian atau keperluan kewangan peribadi lain. Jumlah pinjaman dan pilihan bayaran balik adalah tertakluk kepada kelayakan pemohon, kemampuan pendapatan dan dokumen sokongan.', p1l:'Sesuai untuk: Warganegara Malaysia berumur 18 hingga 60 tahun.', p1a:'Maklumat Lanjut / Mohon Sekarang',
+    p2n:'Pinjaman Perumahan', p2d:'Wujudkan impian memiliki rumah dengan kadar kompetitif dan terma fleksibel.', p2r:'Bercagar: 1% / bulan', p2l:'Tertakluk kepada kelayakan', p2a:'Hubungi Kami →',
+    p3n:'Pinjaman Kenderaan', p3d:'Kereta baru atau terpakai boleh dipohon, dokumentasi mudah dan kelulusan pantas.', p3r:'Bercagar: 1% / bulan', p3l:'Tertakluk kepada kelayakan', p3a:'Hubungi Kami →',
+    p4n:'Pinjaman Perniagaan', p4d:'Modal pusingan tambahan untuk perniagaan anda.', p4r:'Pinjaman perniagaan sesuai untuk pemilik perniagaan yang memerlukan modal tambahan bagi menambah stok, membeli peralatan, mengembangkan perniagaan, menampung perbelanjaan operasi atau mengurus aliran tunai. Jumlah pinjaman yang lebih tinggi boleh dipertimbangkan dengan dokumen sokongan lengkap atau cagaran yang sesuai.', p4l:'Sesuai untuk: Pemilik perniagaan kecil, individu bekerja sendiri, peniaga dan pengusaha perniagaan yang memerlukan modal pusingan.', p4a:'Maklumat Lanjut / Mohon Sekarang',
+    tagElig:'Kelayakan', eligHd:'Siapa Boleh Memohon?', eligSub:'Syarat asas yang mudah dan ringkas',
     eligReqHd:'📋 Syarat Asas', eligDocHd:'📄 Dokumen Diperlukan',
-    e1:'Warganegara atau Penduduk Tetap Malaysia (MyKad sah)', e2:'Umur 18 hingga 65 tahun', e3:'Pendapatan bulanan minimum RM 1,500 (pinjaman peribadi)', e4:'Mempunyai sumber pendapatan tetap atau perniagaan', e5:'Rekod kredit yang baik (CCRIS / CTOS)',
-    d1:'Salinan MyKad (depan dan belakang)', d2:'Slip gaji 3 bulan terkini / bukti pendapatan', d3:'Penyata bank 3 bulan terkini', d4:'Borang EA atau rekod cukai terbaru (bekerja sendiri)', d5:'Pinjaman perniagaan: Sijil pendaftaran SSM',
-    statsHd:'Angka Yang Boleh Dipercayai', statsSub:'Lebih 10 tahun menjadi pilihan utama rakyat Malaysia',
+    e1:'Warganegara atau Penduduk Tetap Malaysia (MyKad sah)', e2:'Umur 18 hingga 70 tahun', e3:'Mempunyai sumber pendapatan tetap', e4:'Pinjaman bercagar memerlukan cagaran', e5:'Kesanggupan membuat pembayaran balik',
+    d1:'Salinan MyKad (depan dan belakang)', d2:'Slip gaji 3 bulan terkini / bukti pendapatan', d3:'Penyata bank 3 bulan terkini', d4:'Dokumen cagaran (jika pinjaman bercagar)', d5:'Dokumen sokongan lain (jika perlu)',
+    statsHd:'Angka Yang Boleh Dipercayai', statsSub:'Pemberi pinjam berlesen tempatan di Muar, Johor',
     s1:'Kelulusan Secepat<br>24 Jam', s2:'Tiada Caj<br>Tersembunyi', s3:'Tahun<br>Pengalaman', s4:'Pelanggan<br>Berpuas Hati',
-    tagSteps:'Proses Permohonan', stepsHd:'4 Langkah Mudah', stepsSub:'Dari permohonan hingga wang masuk akaun, semuanya jelas dan telus',
-    st1:'Mohon Dalam Talian', sd1:'Isi borang dalam talian yang ringkas, muat naik MyKad dan bukti pendapatan.',
-    st2:'Semakan Dokumen', sd2:'Pasukan profesional kami akan menyemak permohonan anda dalam masa 24 jam.',
-    st3:'Kelulusan Diterima', sd3:'Terima notis kelulusan, sahkan terma pinjaman dan kadar faedah sebelum menandatangani.',
-    st4:'Wang Dalam Akaun', sd4:'Selepas menandatangani, wang terus dipindahkan ke akaun bank anda dengan cepat.',
+    tagSteps:'Proses Permohonan', stepsHd:'4 Langkah Mudah', stepsSub:'Dari permohonan hingga wang masuk akaun, semuanya jelas',
+    st1:'Hubungi Kami', sd1:'WhatsApp atau telefon +6012-751 8533. Kami akan nilaikan keperluan anda secara percuma.',
+    st2:'Hantar Dokumen', sd2:'Sediakan dan hantar dokumen yang diperlukan. Pasukan kami akan menyemak dengan segera.',
+    st3:'Kelulusan Diterima', sd3:'Terima notis kelulusan, sahkan terma dan tandatangan perjanjian.',
+    st4:'Wang Dalam Akaun', sd4:'Wang terus dipindahkan ke akaun bank anda selepas perjanjian ditandatangani.',
     tagFaq:'Soalan Lazim', faqHd:'Soalan Yang Sering Ditanya', faqSub:'Tidak jumpa jawapan? Hubungi kami terus',
-    faqPhTitle:'Kandungan FAQ Akan Dikemaskini', faqPhSub:'Bahagian ini akan mengandungi soalan-soalan lazim daripada pelanggan kami. Nantikan kemaskini.<br>Jika ada pertanyaan, sila hubungi kami melalui WhatsApp atau borang di bawah.',
-    tagContact:'Hubungi Kami', contactHd:'Dapatkan Rundingan Percuma', contactSub:'Pakar kami akan membalas dalam masa 24 jam pada hari bekerja',
+    faqPhTitle:'Soalan Lazim', faqPhSub:'Sila lihat soalan di bawah. Untuk pertanyaan lain, WhatsApp kami.',
+    tagContact:'Hubungi Kami', contactHd:'Dapatkan Rundingan Percuma', contactSub:'WhatsApp atau isi borang, kami akan membalas dengan segera',
     cl1:'Telefon', cl3:'E-mel', cl4:'Waktu Perniagaan', cl5:'Alamat',
     bizHours:'Isnin hingga Sabtu · 9:00PG – 6:00PTG',
     flName:'Nama Penuh', flPhone:'No. Telefon', flType:'Jenis Pinjaman', flAmt:'Jumlah Dipohon', flMsg:'Mesej',
     fo1:'Pinjaman Peribadi', fo2:'Pinjaman Perumahan', fo3:'Pinjaman Kenderaan', fo4:'Pinjaman Perniagaan',
     formSubmit:'Hantar Permohonan',
-    navProducts:'Produk Pinjaman', navElig:'Kelayakan', navSteps:'Proses Permohonan', navFaq:'Soalan Lazim', navContact:'Hubungi Kami',
-    fc1Hd:'Produk Pinjaman', fc1_1:'Pinjaman Peribadi', fc1_2:'Pinjaman Perumahan', fc1_3:'Pinjaman Kenderaan', fc1_4:'Pinjaman Perniagaan',
+    navProducts:'Perkhidmatan Pinjaman', navElig:'Kelayakan', navSteps:'Proses Permohonan', navFaq:'Soalan Lazim', navContact:'Hubungi Kami',
+    fc1Hd:'Perkhidmatan Pinjaman', fc1_1:'Pinjaman Peribadi', fc1_2:'Pinjaman Perumahan', fc1_3:'Pinjaman Kenderaan', fc1_4:'Pinjaman Perniagaan',
     fc2Hd:'Pautan Pantas', fc2_1:'Kelayakan', fc2_2:'Proses Permohonan', fc2_3:'Soalan Lazim', fc2_4:'Hubungi Kami',
     fc3Hd:'Maklumat Undang-undang', fc3_1:'Dasar Privasi', fc3_2:'Terma & Syarat', fc3_3:'Saluran Aduan', fc3_4:'Tentang Kami',
-    footerDesc:'AllBestFinancial Sdn Bhd — Institusi kewangan berlesen menyediakan perkhidmatan pinjaman yang telus dan profesional untuk rakyat Malaysia.',
-    footerCopy:'© 2025 AllBestFinancial Sdn Bhd · No. SSM: [Pendaftaran] · Pematuhan PDPA',
+    footerDesc:'ALL BEST HOWLY ENTERPRISE — Pemberi pinjam berlesen. No. Lesen: WL5323/01/01-11/050927. Muar, Johor.',
+    footerCopy:'© 2025 ALL BEST HOWLY ENTERPRISE · No. Pendaftaran: 201703230674 (JM0814210-K) · No. Lesen: WL5323/01/01-11/050927',
     footerRights:'Hak Cipta Terpelihara · All Rights Reserved'
   },
   en: {
-    cta:'Apply Now', badge:'Licensed Financial Institution · License No.: [INSERT]',
-    h1:'Fast Loans<br><em>Peace of Mind</em>',
-    sub:'Comprehensive loan solutions designed for all Malaysians. Transparent rates, simple process, 24-hour approval.',
-    t1:'Transparent Rates', t2:'24-Hour Approval', t3:'Zero Hidden Fees', t4:'Fully Licensed',
+    cta:'Apply Now', badge:'Fast Approval In 1 Hour',
+    h1:'<span class="hero-title-line">ALL BEST HOWLY</span><span class="hero-title-line">LICENSED LOANS</span><span class="hero-title-line"><em>JOHOR</em></span>',
+    sub:'100% licensed moneylender in Muar, Johor. Transparent rates, simple steps, and responsive service for urgent funding needs.',
+    t1:'Transparent Rates', t2:'Fast Approval', t3:'Zero Hidden Fees', t4:'Fully Licensed',
     ctaMain:'Apply Now', ctaCalc:'Calculate Loan',
-    calcTitle:'📊 Loan Calculator', lblAmt:'Loan Amount (RM)', lblTen:'Loan Tenure', lblRate:'Interest Rate (%)',
-    tenUnit:'Years', rl1:'Monthly Payment', rl2:'Total Payment', rl3:'Total Interest', calcBtn:'Apply For This Plan →',
-    tagProd:'Loan Products', prodHd:'Our Loan Products', prodSub:'Comprehensive financial solutions for every personal and business need',
-    p1n:'Personal Loan', p1d:'For medical, education, renovation, travel and other personal financial needs. Fast approval.', p1r:'From 5.5% p.a.', p1l:'Up to RM 150,000 · Up to 10 years', p1a:'Learn More →',
-    p2n:'Home Loan', p2d:'Achieve your homeownership dream with competitive rates and flexible repayment terms.', p2r:'From 3.5% p.a.', p2l:'Up to RM 2,000,000 · Up to 35 years', p2a:'Learn More →',
-    p3n:'Vehicle Loan', p3d:'New or used vehicles welcome. Simple documentation and swift approval to get you on the road.', p3r:'From 3.8% p.a.', p3l:'Up to RM 500,000 · Up to 9 years', p3a:'Learn More →',
-    p4n:'Business Loan', p4d:'Support SME growth with working capital, asset purchase and business expansion financing.', p4r:'From 6.0% p.a.', p4l:'Up to RM 5,000,000 · Flexible tenure', p4a:'Learn More →',
+    calcTitle:'📊 Loan Calculator', lblAmt:'Loan Amount (RM)', lblTen:'Tenure (Months)', lblRate:'Interest Rate (% per month)',
+    tenUnit:'months', rl1:'Monthly Payment', rl2:'Total Payment', rl3:'Total Interest', calcBtn:'Apply For This Plan →',
+    tagProd:'Loan Packages', prodHd:'Simple application, fast processing', prodSub:'We provide personal loan and business loan solutions to help you manage personal financial needs, emergency expenses, business cash flow, or expansion plans. Our application process is simple and clear, with assistance provided throughout the process.',
+    p1n:'Personal Loans', p1d:'Flexible financing for your personal needs.', p1r:'Our personal loan packages are suitable for emergency expenses, medical needs, education, home repairs, daily commitments, or other personal financial needs. Loan amount and repayment options are subject to applicant eligibility, income ability, and supporting documents.', p1l:'Suitable for: Malaysian citizens aged 18 to 60.', p1a:'More Info / Apply Now',
+    p2n:'Home Loan', p2d:'Achieve your homeownership dream with competitive rates and flexible repayment.', p2r:'Secured: 1% / month', p2l:'Subject to eligibility', p2a:'Enquire Now →',
+    p3n:'Vehicle Loan', p3d:'New or used vehicles welcome. Simple documentation and swift approval.', p3r:'Secured: 1% / month', p3l:'Subject to eligibility', p3a:'Enquire Now →',
+    p4n:'Business Loans', p4d:'Extra working capital for your business.', p4r:'Our business loan packages are designed for business owners who need additional capital for stock purchase, equipment, business expansion, operating expenses, or cash flow management. Higher loan amounts may be considered with complete supporting documents or suitable collateral.', p4l:'Suitable for: Small business owners, self-employed individuals, traders, and business operators who need working capital.', p4a:'More Info / Apply Now',
     tagElig:'Eligibility', eligHd:'Who Can Apply?', eligSub:'Simple and straightforward eligibility requirements',
     eligReqHd:'📋 Basic Requirements', eligDocHd:'📄 Required Documents',
-    e1:'Malaysian citizen or permanent resident (valid MyKad)', e2:'Age 18 to 65 years old', e3:'Minimum monthly income of RM 1,500 (personal loan)', e4:'Stable employment or business income', e5:'Good credit record (CCRIS / CTOS)',
-    d1:'MyKad copy (front and back)', d2:'Latest 3 months payslips / proof of income', d3:'Latest 3 months bank statements', d4:'Latest EA form or tax return (self-employed)', d5:'Business loan: SSM company registration certificate',
-    statsHd:'Numbers You Can Trust', statsSub:'Over 10 years as the preferred choice for Malaysians',
+    e1:'Malaysian citizen or permanent resident (valid MyKad)', e2:'Age 18 to 70 years old', e3:'Stable employment or business income', e4:'Collateral required for secured loans', e5:'Willingness to repay',
+    d1:'MyKad copy (front and back)', d2:'Latest 3 months payslips / proof of income', d3:'Latest 3 months bank statements', d4:'Collateral documents (for secured loans)', d5:'Other supporting documents (if required)',
+    statsHd:'Numbers You Can Trust', statsSub:'Your trusted licensed moneylender in Muar, Johor',
     s1:'Approval in as<br>Fast as 24 Hours', s2:'Zero Hidden<br>Fees', s3:'Years of<br>Experience', s4:'Satisfied<br>Customers',
-    tagSteps:'Application Process', stepsHd:'4 Simple Steps', stepsSub:'From application to funds in your account — clear and transparent throughout',
-    st1:'Apply Online', sd1:'Fill in our simple online form and upload your MyKad and proof of income.',
-    st2:'Document Review', sd2:'Our professional team will review your application within 24 hours.',
-    st3:'Get Approved', sd3:'Receive your approval notice and confirm loan terms and interest rate before signing.',
+    tagSteps:'Application Process', stepsHd:'4 Simple Steps', stepsSub:'From application to funds in your account — clear and transparent',
+    st1:'Contact Us', sd1:'WhatsApp or call +6012-751 8533. We will assess your needs for free.',
+    st2:'Submit Documents', sd2:'Prepare and submit required documents. Our team will review them promptly.',
+    st3:'Get Approved', sd3:'Receive your approval notice and confirm loan terms before signing the agreement.',
     st4:'Funds Disbursed', sd4:'After signing, funds are transferred directly to your designated bank account.',
-    tagFaq:'FAQ', faqHd:'Frequently Asked Questions', faqSub:"Can't find an answer? Contact us directly",
-    faqPhTitle:'FAQ Content Coming Soon', faqPhSub:'This section will feature the most common questions from our customers. Stay tuned.<br>For any enquiries, please reach us via WhatsApp or the form below.',
-    tagContact:'Contact Us', contactHd:'Get a Free Consultation', contactSub:'Our advisors will respond within 24 hours on business days',
+    tagFaq:'FAQ', faqHd:'Frequently Asked Questions', faqSub:"Can't find an answer? WhatsApp us directly",
+    faqPhTitle:'FAQ', faqPhSub:'See questions below. For other enquiries, WhatsApp us.',
+    tagContact:'Contact Us', contactHd:'Get a Free Consultation', contactSub:'WhatsApp us or fill the form and we will respond promptly',
     cl1:'Phone', cl3:'Email', cl4:'Business Hours', cl5:'Address',
     bizHours:'Monday to Saturday · 9:00AM – 6:00PM',
     flName:'Full Name', flPhone:'Phone Number', flType:'Loan Type', flAmt:'Amount Required', flMsg:'Message',
     fo1:'Personal Loan', fo2:'Home Loan', fo3:'Vehicle Loan', fo4:'Business Loan',
     formSubmit:'Submit Application',
-    navProducts:'Loan Products', navElig:'Eligibility', navSteps:'Application Process', navFaq:'FAQ', navContact:'Contact Us',
-    fc1Hd:'Loan Products', fc1_1:'Personal Loan', fc1_2:'Home Loan', fc1_3:'Vehicle Loan', fc1_4:'Business Loan',
+    navProducts:'Loan Packages', navElig:'Eligibility', navSteps:'Application Process', navFaq:'FAQ', navContact:'Contact Us',
+    fc1Hd:'Loan Packages', fc1_1:'Personal Loans', fc1_2:'Home Loan', fc1_3:'Vehicle Loan', fc1_4:'Business Loans',
     fc2Hd:'Quick Links', fc2_1:'Eligibility', fc2_2:'Application Process', fc2_3:'FAQ', fc2_4:'Contact Us',
     fc3Hd:'Legal Info', fc3_1:'Privacy Policy', fc3_2:'Terms & Conditions', fc3_3:'Complaints', fc3_4:'About Us',
-    footerDesc:'AllBestFinancial Sdn Bhd — A licensed financial institution providing transparent and professional loan services for all Malaysians.',
-    footerCopy:'© 2025 AllBestFinancial Sdn Bhd · SSM Reg No: [Registration] · PDPA Compliant',
+    footerDesc:'ALL BEST HOWLY ENTERPRISE — Licensed moneylender. License No.: WL5323/01/01-11/050927. Muar, Johor.',
+    footerCopy:'© 2025 ALL BEST HOWLY ENTERPRISE · Reg No: 201703230674 (JM0814210-K) · License: WL5323/01/01-11/050927',
     footerRights:'All Rights Reserved · Hak Cipta Terpelihara'
   }
 };
@@ -845,11 +1086,11 @@ function setLang(l) {
 function fmt(n){ return 'RM ' + Math.round(n).toLocaleString(); }
 function calc(){
   var P = parseFloat(document.getElementById('amount').value);
-  var r = parseFloat(document.getElementById('rate').value) / 100 / 12;
-  var n = parseInt(document.getElementById('tenure').value) * 12;
+  var r = parseFloat(document.getElementById('rate').value) / 100; // monthly rate
+  var n = parseInt(document.getElementById('tenure').value); // months
   var unit = T[lang].tenUnit;
   document.getElementById('amountVal').textContent = 'RM ' + P.toLocaleString();
-  document.getElementById('tenureVal').textContent = (n/12) + ' ' + unit;
+  document.getElementById('tenureVal').textContent = n + ' ' + unit;
   document.getElementById('rateVal').textContent = parseFloat(document.getElementById('rate').value).toFixed(1) + '%';
   var m = r === 0 ? P/n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
   var tot = m * n;
@@ -858,7 +1099,124 @@ function calc(){
   document.getElementById('interest').textContent = fmt(tot - P);
 }
 
-window.onload = function(){ setLang('zh'); };
+function initHeroActions(){
+  ['nav-cta','cta-main'].forEach(function(id){
+    var btn = document.getElementById(id);
+    if (btn) {
+      btn.addEventListener('click', function(){
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  });
+}
+
+function initApplicationSubmit(){
+  var submitBtn = document.getElementById('form-submit');
+  if (!submitBtn) return;
+
+  submitBtn.addEventListener('click', async function(e){
+    e.preventDefault();
+
+    var name = document.getElementById('fi-name').value.trim();
+    var phone = document.getElementById('fi-phone').value.trim();
+    var typeSelect = document.getElementById('fi-type');
+    var loanType = typeSelect && typeSelect.selectedOptions[0] ? typeSelect.selectedOptions[0].textContent.trim() : '';
+    var amount = document.getElementById('fi-amount').value.trim();
+    var message = document.getElementById('fi-msg').value.trim();
+
+    var copy = {
+      zh: {
+        missing: '请填写姓名和手机号码，我们才能跟进您的申请。',
+        sending: '提交中...',
+        success: '申请已提交成功，我们会尽快联系您。',
+        failed: '提交失败，请稍后再试，或直接 WhatsApp 联系我们。'
+      },
+      ms: {
+        missing: 'Sila isi nama dan nombor telefon supaya kami boleh susul permohonan anda.',
+        sending: 'Sedang hantar...',
+        success: 'Permohonan telah dihantar. Kami akan menghubungi anda secepat mungkin.',
+        failed: 'Permohonan gagal dihantar. Sila cuba lagi atau hubungi kami melalui WhatsApp.'
+      },
+      en: {
+        missing: 'Please fill in your name and phone number so we can follow up on your application.',
+        sending: 'Submitting...',
+        success: 'Application submitted successfully. We will contact you as soon as possible.',
+        failed: 'Submission failed. Please try again later or contact us through WhatsApp.'
+      }
+    };
+    var c = copy[lang] || copy.zh;
+
+    if (!name || !phone) {
+      alert(c.missing);
+      (!name ? document.getElementById('fi-name') : document.getElementById('fi-phone')).focus();
+      return;
+    }
+
+    var originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = c.sending;
+
+    try {
+      var endpoint = window.location.protocol === 'file:' ? 'http://localhost:3000/api/apply' : '/api/apply';
+      var res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          phone: phone,
+          loanType: loanType,
+          amount: amount,
+          message: message,
+          language: lang,
+          pageUrl: window.location.href
+        })
+      });
+      var data = {};
+      try { data = await res.json(); } catch (err) {}
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Submit failed');
+
+      alert(c.success);
+      document.getElementById('fi-name').value = '';
+      document.getElementById('fi-phone').value = '';
+      document.getElementById('fi-amount').value = '';
+      document.getElementById('fi-msg').value = '';
+    } catch (err) {
+      console.error(err);
+      alert(c.failed);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+}
+
+function initScrollReveal(){
+  var targets = document.querySelectorAll('.hero-side, .section-hd, .prod-card, .elig-col, .stat-box, .step-card, .faq-placeholder, .contact-info, .contact-form, .footer-inner');
+  targets.forEach(function(el, index){
+    el.classList.add('scroll-reveal');
+    el.style.transitionDelay = ((index % 4) * 70) + 'ms';
+  });
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function(el){ el.classList.add('in-view'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -60px 0px' });
+  targets.forEach(function(el){ observer.observe(el); });
+}
+
+window.onload = function(){
+  setLang('zh');
+  initHeroActions();
+  initApplicationSubmit();
+  initScrollReveal();
+};
 </script>
 </body>
 </html>
