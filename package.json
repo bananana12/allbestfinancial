@@ -1,0 +1,12 @@
+{
+  "name": "all-best-howly-application-email",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend for ALL BEST HOWLY application form email submissions.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
