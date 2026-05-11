@@ -338,6 +338,13 @@
   .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.4); }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-light); }
   .form-group select option { background: var(--green-dark); color: #fff; }
+  .hp-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
   .btn-form {
     width: 100%; background: var(--green-main); color: #fff; border: none;
@@ -836,11 +843,11 @@
         <div class="form-row">
           <div class="form-group">
             <label id="fl-name">姓名 / Nama</label>
-            <input type="text" id="fi-name" placeholder="Name">
+            <input type="text" id="fi-name" placeholder="Name" autocomplete="name" maxlength="80" pattern="[^0-9]*">
           </div>
           <div class="form-group">
             <label id="fl-phone">手机号码 / No. Telefon</label>
-            <input type="tel" id="fi-phone" placeholder="01X-XXXX XXXX">
+            <input type="tel" id="fi-phone" placeholder="01X-XXXX XXXX" autocomplete="tel" maxlength="30">
           </div>
         </div>
         <div class="form-group">
@@ -857,6 +864,10 @@
         <div class="form-group">
           <label id="fl-msg">留言 / Mesej</label>
           <textarea id="fi-msg" rows="3" placeholder="请简述您的需求..."></textarea>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label>Company</label>
+          <input type="text" id="fi-company" tabindex="-1" autocomplete="off">
         </div>
         <button type="button" class="btn-form" id="form-submit">提交申请 / Hantar Permohonan</button>
       </div>
@@ -1110,12 +1121,23 @@ function initHeroActions(){
   });
 }
 
+var applicationSubmitInProgress = false;
+
 function initApplicationSubmit(){
   var submitBtn = document.getElementById('form-submit');
+  var nameInput = document.getElementById('fi-name');
   if (!submitBtn) return;
+
+  if (nameInput) {
+    nameInput.addEventListener('input', function(){
+      var cleaned = this.value.replace(/[0-9０-９]/g, '');
+      if (this.value !== cleaned) this.value = cleaned;
+    });
+  }
 
   submitBtn.addEventListener('click', async function(e){
     e.preventDefault();
+    if (applicationSubmitInProgress) return;
 
     var name = document.getElementById('fi-name').value.trim();
     var phone = document.getElementById('fi-phone').value.trim();
@@ -1123,22 +1145,29 @@ function initApplicationSubmit(){
     var loanType = typeSelect && typeSelect.selectedOptions[0] ? typeSelect.selectedOptions[0].textContent.trim() : '';
     var amount = document.getElementById('fi-amount').value.trim();
     var message = document.getElementById('fi-msg').value.trim();
+    var company = document.getElementById('fi-company') ? document.getElementById('fi-company').value.trim() : '';
 
     var copy = {
       zh: {
         missing: '请填写姓名和手机号码，我们才能跟进您的申请。',
+        badName: '姓名不能填写数字，请检查后再提交。',
+        cooldown: '申请已提交，请稍后再重复提交。',
         sending: '提交中...',
         success: '申请已提交成功，我们会尽快联系您。',
         failed: '提交失败，请稍后再试，或直接 WhatsApp 联系我们。'
       },
       ms: {
         missing: 'Sila isi nama dan nombor telefon supaya kami boleh susul permohonan anda.',
+        badName: 'Nama tidak boleh mengandungi nombor. Sila semak semula.',
+        cooldown: 'Permohonan telah dihantar. Sila tunggu sebentar sebelum menghantar sekali lagi.',
         sending: 'Sedang hantar...',
         success: 'Permohonan telah dihantar. Kami akan menghubungi anda secepat mungkin.',
         failed: 'Permohonan gagal dihantar. Sila cuba lagi atau hubungi kami melalui WhatsApp.'
       },
       en: {
         missing: 'Please fill in your name and phone number so we can follow up on your application.',
+        badName: 'Name cannot contain numbers. Please check and submit again.',
+        cooldown: 'Your application has already been submitted. Please wait before submitting again.',
         sending: 'Submitting...',
         success: 'Application submitted successfully. We will contact you as soon as possible.',
         failed: 'Submission failed. Please try again later or contact us through WhatsApp.'
@@ -1152,7 +1181,21 @@ function initApplicationSubmit(){
       return;
     }
 
+    if (/[0-9０-９]/.test(name)) {
+      alert(c.badName);
+      document.getElementById('fi-name').focus();
+      return;
+    }
+
+    var cooldownKey = 'allbest-application-cooldown-until';
+    var cooldownUntil = parseInt(localStorage.getItem(cooldownKey) || '0', 10);
+    if (Date.now() < cooldownUntil) {
+      alert(c.cooldown);
+      return;
+    }
+
     var originalText = submitBtn.textContent;
+    applicationSubmitInProgress = true;
     submitBtn.disabled = true;
     submitBtn.textContent = c.sending;
 
@@ -1167,6 +1210,7 @@ function initApplicationSubmit(){
           loanType: loanType,
           amount: amount,
           message: message,
+          company: company,
           language: lang,
           pageUrl: window.location.href
         })
@@ -1176,6 +1220,7 @@ function initApplicationSubmit(){
       if (!res.ok || !data.ok) throw new Error(data.error || 'Submit failed');
 
       alert(c.success);
+      localStorage.setItem(cooldownKey, String(Date.now() + 60 * 1000));
       document.getElementById('fi-name').value = '';
       document.getElementById('fi-phone').value = '';
       document.getElementById('fi-amount').value = '';
@@ -1184,6 +1229,7 @@ function initApplicationSubmit(){
       console.error(err);
       alert(c.failed);
     } finally {
+      applicationSubmitInProgress = false;
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
     }
